@@ -12,13 +12,24 @@
     <tr>
       <th>ID</th>
       <th>Subject</th>
+      <th>Teacher</th>
       <th>Edit</th>
       <th>Hapus</th>
     </tr>
+    <!-- <p><%=JSON.stringify(data[0])%></p> -->
     <%data.forEach(dataShow => {%>
       <tr>
         <td><%=dataShow.id%></td>
         <td><%=dataShow.subject_name%></td>
+        <td>
+        <%if(dataShow.Teachers[0] == undefined){%>Gaada
+        <%}else{
+          for(var i=0; i<dataShow.Teachers.length; i++){%>
+            <%= i+1 +". "+(dataShow.Teachers[i].first_name +" "+ dataShow.Teachers[i].last_name)%> <br>
+        <%}}%>
+
+
+        </td>
         <td><a href="/subjects/edit/<%=dataShow.id%>"> <button type="button" name="buttons">Ganti</button></a></td>
         <td><a href="/subjects/delete/<%=dataShow.id%>"> <button type="button" name="buttons">Hapus</button></a></td>
       </tr>

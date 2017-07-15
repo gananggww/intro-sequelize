@@ -3,7 +3,9 @@ const router = express.Router()
 var db = require("../models")
 
 router.get("/", function(req, res){
-  db.Subject.findAll()
+  db.Subject.findAll({
+    include:[db.Teacher]
+  })
     .then(params => {
       // console.log(params);
       res.render("subjects", {data:params} )
@@ -12,7 +14,12 @@ router.get("/", function(req, res){
 
 //Tampilkan Form
 router.get('/add', function(req, res){
-    res.render('form-subject')
+  db.Subject.findAll({
+    include:[db.Teacher]
+  })
+  .then(params => {
+    res.render('form-subject', {data:params})
+  })
 });
 
 //Proses Tambah Data / Post

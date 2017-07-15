@@ -4,16 +4,21 @@ var db = require("../models")
 
 //Tampilkan Table Seluruh
 router.get("/", function(req, res){
-  db.Teacher.findAll()
+  db.Teacher.findAll({
+    include:[db.Subject]
+  })
     .then(params => {
-      // console.log(params);
+      console.log(params);
       res.render("teachers", {data:params} )
   }).catch(function(err){console.log(err)})
 })
 
 //Tampilkan Form
 router.get('/add', function(req, res){
-    res.render('form-teacher')
+  db.Subject.findAll()
+  .then(params =>{
+    res.render('form-teacher', {data:params})
+  })
 });
 //Proses Tambah Data / Post
 router.post('/add', function(req, res){
@@ -21,8 +26,10 @@ router.post('/add', function(req, res){
     first_name: req.body.firstname,
     last_name: req.body.lastname,
     email:req.body.email,
+    SubjectId:req.body.dropDown,
     createdAt: new Date(),
-    updatedAt: new Date(),
+    updatedAt: new Date()
+
   })
   .then(() =>{
       res.redirect('/teachers')
@@ -31,16 +38,20 @@ router.post('/add', function(req, res){
 //Form Ganti Data
 router.get('/edit/:id', function(req, res){
   db.Teacher.findById(req.params.id)
-  .then((params) =>{
-    res.render('edit-teacher', {data: params})
+  .then(paramsTeacher =>{
+    db.Subject.findAll()
+      .then(paramsSubject =>{
+          res.render('edit-teacher', {dataT: paramsTeacher, dataS : paramsSubject })
+      })
+    })
   })
-})
 //Update atau Ganti Data
 router.post('/edit/:id', function(req, res){
   db.Teacher.update({
     first_name: `${req.body.firstname}`,
     last_name:`${req.body.lastname}`,
     email:`${req.body.email}`,
+    SubjectId: `${req.body.dropDown}`,
     createdAt: new Date(),
     updatedAt: new Date()
   }, {

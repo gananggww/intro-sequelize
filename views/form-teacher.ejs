@@ -18,6 +18,13 @@
     <input type="text" name="email" value="">
     <br><br>
     <br><br>
+    <select name="dropDown">
+      <%data.forEach(dataDrop => {%>
+
+        <option value="<%=dataDrop.id%>" selected><%=dataDrop.subject_name%></option>
+      <%})%>
+    </select>
+    <br><br>
     <input type="submit" value="Submit">
     <a href = "/teachers"> <button type="button" name="buttons">Cancel</button></a>
   </form>

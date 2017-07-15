@@ -52,6 +52,7 @@ router.post('/edit/:id', function(req, res){
     res.redirect('/students')
   })
 })
+
 //Hapus Data
 router.get('/delete/:id', function(req, res){
   db.Student.destroy({where:{id:`${req.params.id}`}})
@@ -59,7 +60,5 @@ router.get('/delete/:id', function(req, res){
     res.redirect('/students')
   })
 })
-
-
 
 module.exports = router
