@@ -27,4 +27,4 @@ app.use("/teachers", teacherRoute)
 app.use("/subjects", subjectRoute);
 app.use("/students", studentRoute);
 
-app.listen(3500);
+app.listen(process.env.PORT || 3000);
