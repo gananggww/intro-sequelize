@@ -15,13 +15,16 @@ var teacherRoute = require("./router/routingTeacher")
 var subjectRoute = require("./router/routingSubject")
 var studentRoute = require("./router/routingStudent")
 var indexRoute = require("./router/routingIndex")
+var loginRoute = require("./router/routingLogin")
 
 // app.get("/", function(req,res){
 //   res.render("index")
 // })
+
 app.use("/",indexRoute);
+app.use("/login", loginRoute)
 app.use("/teachers", teacherRoute)
 app.use("/subjects", subjectRoute);
 app.use("/students", studentRoute);
 
-app.listen(3200);
+app.listen(3500);

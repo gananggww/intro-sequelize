@@ -13,6 +13,7 @@
       <th>ID</th>
       <th>Subject</th>
       <th>Teacher</th>
+      <th>Enroll</th>
       <th>Edit</th>
       <th>Hapus</th>
     </tr>
@@ -30,6 +31,7 @@
 
 
         </td>
+        <td><a href="/subjects/<%= dataShow.id %>/enrolledstudents/"><button type="button" name="buttons">Enrolled Students</button></a></td>
         <td><a href="/subjects/edit/<%=dataShow.id%>"> <button type="button" name="buttons">Ganti</button></a></td>
         <td><a href="/subjects/delete/<%=dataShow.id%>"> <button type="button" name="buttons">Hapus</button></a></td>
       </tr>
